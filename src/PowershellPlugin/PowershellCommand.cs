@@ -1,6 +1,10 @@
 ﻿namespace Loupedeck.PowershellPlugin.Commands
 {
     using System;
+    using System.Drawing;
+    using System.Drawing.Imaging;
+    using System.Drawing.Drawing2D;
+    using System.IO;
     using System.Threading.Tasks;
     using System.Timers;
 
@@ -36,6 +40,7 @@
             this.Timer.Enabled = true;
         }
 
+
         protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
         {
             if (String.IsNullOrEmpty(actionParameter))
@@ -48,6 +53,7 @@
             {
                 var fgColor = BitmapColor.White;
                 var bgColor = BitmapColor.Black;
+                
                 
                 if (! data.fgColor.IsNullOrEmpty())
                 {
@@ -76,7 +82,6 @@
                 {
                     iconBuilder.DrawText("waiting\nfor data", fgColor);
                 }
-                
 
                 var renderedImage = iconBuilder.ToImage();
                 iconBuilder.Dispose();
@@ -85,7 +90,7 @@
             } 
             return null;           
         }
-
+        
         protected override void RunCommand(String actionParameter) //  => System.Diagnostics.Process.Start($"Powershell:{actionParameter.Split(':')[0]}");
         {
             
