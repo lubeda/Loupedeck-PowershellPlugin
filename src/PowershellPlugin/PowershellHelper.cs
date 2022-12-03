@@ -4,7 +4,6 @@
     using Newtonsoft.Json;
     using Loupedeck.PowershellPlugin.Models;
     using System.Management.Automation;
-    using System.Collections.ObjectModel;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -78,6 +77,7 @@
                         }
                         else
                         {
+                            result = JsonConvert.DeserializeObject<PowershellResponse>(str);
                             result = JsonConvert.DeserializeObject<PowershellResponse>(str);
                         }
                     }

@@ -16,6 +16,8 @@
         public String fgColor { get; set; }
         public Boolean IsLoading { get; set; }
 
+        public Single percent { get; set; }
+
         public PowershellResponse()
         {
             this.IsValid = false;
