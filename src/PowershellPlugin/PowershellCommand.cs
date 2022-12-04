@@ -1,7 +1,7 @@
 ﻿namespace Loupedeck.PowershellPlugin.Commands
 {
     using System;
-    
+
     using System.IO;
     using System.Threading.Tasks;
 
@@ -53,39 +53,48 @@
 
                 if (data.IsValid)
                 {
+                    BitmapColor bgColor;
+                    var maxx = PowershellDrawingHelper.GetDimension(imageSize);
                     
-
                     if (data.bgcolor != null)
                     {
-                       var bgColor = new BitmapColor(data.bgcolor.R, data.bgcolor.G, data.bgcolor.B);
+                        bgColor = new BitmapColor(data.bgcolor.R, data.bgcolor.G, data.bgcolor.B);
                     }
+                    else
+                    {
+                        bgColor = new BitmapColor(0, 0, 0);
+                    }
+
+                    iconBuilder.Clear(bgColor);
 
                     if (File.Exists(data.backgroundimage))
                     {
                         iconBuilder.SetBackgroundImage(BitmapImage.FromFile(data.backgroundimage));
                     }
-                    
+
+
                     if (data.indicator != null)
                     {
                         var ci = new BitmapColor(data.indicator.R, data.indicator.G, data.indicator.B);
                         
-                        var max = PowershellDrawingHelper.GetDimension(imageSize);
-                        var max85 = max * (Single) 0.85;
-                        var max40 = (Single) max * 0.4;
-                        
-                        iconBuilder.DrawLine(max85, max85, max,max, ci, (Single) max40);
-                        
+                        var max85 = maxx * (Single)0.85;
+                        var max40 = (Single)maxx * 0.4;
+
+                        iconBuilder.DrawLine(max85, max85, maxx, maxx, ci, (Single)max40);
+
                     }
                     if (data.text[0].text != null)
                     {
                         var c = new BitmapColor(data.text[0].color.R, data.text[0].color.B, data.text[0].color.B);
-                        iconBuilder.DrawText(text: data.text[0].text, x: data.text[0].position.x, y: data.text[0].position.y, color: c, fontSize: data.text[0].fontsize, height: 10, width: 50);
+                        iconBuilder.DrawText(text: data.text[0].text, x: data.text[0].position.x, y: data.text[0].position.y, color: c, fontSize: data.text[0].fontsize, height: 0, width: maxx);
+                        // iconBuilder.DrawCircle(data.text[0].position.x, data.text[0].position.y, 3, BitmapColor.White);
+
                         // iconBuilder.DrawText(text: data.text[0].text, color: c);
                         if (data.text[1].text != null)
                         {
                             c = new BitmapColor(data.text[1].color.R, data.text[1].color.B, data.text[1].color.B);
-                            
-                            iconBuilder.DrawText(text: data.text[1].text, x: data.text[1].position.x, y: data.text[1].position.y, color: c, fontSize: data.text[1].fontsize, height: 10, width: 50);
+
+                            iconBuilder.DrawText(text: data.text[1].text, x: data.text[1].position.x, y: data.text[1].position.y, color: c, fontSize: data.text[1].fontsize, height: 0, width: maxx);
                         }
                     }
                 }
@@ -93,7 +102,7 @@
                 {
                     var bgColor = BitmapColor.Black;
                     var fgColor = BitmapColor.White;
-                    
+
                     iconBuilder.Clear(bgColor);
                     iconBuilder.DrawText("waiting\nfor data", fgColor);
                 }
