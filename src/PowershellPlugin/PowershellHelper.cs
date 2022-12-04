@@ -7,8 +7,10 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using System.Drawing;
 
-    public sealed class PowershellHelper
+
+public sealed class PowershellHelper
     {
 
         public static ConcurrentDictionary<String, PowershellResponse> _DataCache;
@@ -49,13 +51,13 @@
             
             this.DataGet(actionParameter, out result);
 
-            if (! result.IsLoading)
+            if (!result.IsLoading)
             {
                 var _ps = PowerShell.Create(); // System.Management.Automation.Powershell.Create();
 
                 _ps.AddCommand(actionParameter)
                                      .AddParameter("mode", mode)
-                                     .AddCommand("convertto-json");
+                                     .AddCommand("convertto-json").AddParameter("Depth",6);
 
                 result.IsLoading = true;
                 
@@ -64,7 +66,7 @@
     
                 if (_ps.Streams.Error.Count > 0)
                 {
-                    result.Text = "PS\nError";
+                    result.text[0].text = "PS\nError";
                 }
                 else
                 {
@@ -73,11 +75,10 @@
                         var str = objs[0].ToString();
                         if (str.IsNullOrEmpty())
                         {
-                            result.Text = "empty\nresponse";
+                            result.text[0].text = "empty\nresponse";
                         }
                         else
                         {
-                            result = JsonConvert.DeserializeObject<PowershellResponse>(str);
                             result = JsonConvert.DeserializeObject<PowershellResponse>(str);
                         }
                     }
