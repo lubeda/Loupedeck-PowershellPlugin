@@ -77,26 +77,29 @@
                     {
                         var ci = new BitmapColor(data.indicator.R, data.indicator.G, data.indicator.B);
                         
-                        var max85 = maxx * (Single)0.85;
+                        var max15 = maxx * (Single)0.15;
                         var max40 = (Single)maxx * 0.4;
 
-                        iconBuilder.DrawLine(max85, max85, maxx, maxx, ci, (Single)max40);
+                        iconBuilder.DrawLine(max15, max15, 0, 0, ci, (Single)max40);
 
                     }
-                    if (data.text[0].text != null)
+                    if (data.text.Count > 0)
                     {
-                        var c = new BitmapColor(data.text[0].color.R, data.text[0].color.B, data.text[0].color.B);
-                        iconBuilder.DrawText(text: data.text[0].text, x: data.text[0].position.x, y: data.text[0].position.y, color: c, fontSize: data.text[0].fontsize, height: 0, width: maxx);
-                        // iconBuilder.DrawCircle(data.text[0].position.x, data.text[0].position.y, 3, BitmapColor.White);
-
-                        // iconBuilder.DrawText(text: data.text[0].text, color: c);
-                        if (data.text[1].text != null)
+                        if (data.text[0].text != null)
                         {
-                            c = new BitmapColor(data.text[1].color.R, data.text[1].color.B, data.text[1].color.B);
+                            var c = new BitmapColor(data.text[0].color.R, data.text[0].color.B, data.text[0].color.B);
+                            iconBuilder.DrawText(text: data.text[0].text, x: data.text[0].position.x, y: data.text[0].position.y, color: c, fontSize: data.text[0].fontsize, height: 0, width: maxx);
+                            // iconBuilder.DrawCircle(data.text[0].position.x, data.text[0].position.y, 3, BitmapColor.White);
 
-                            iconBuilder.DrawText(text: data.text[1].text, x: data.text[1].position.x, y: data.text[1].position.y, color: c, fontSize: data.text[1].fontsize, height: 0, width: maxx);
+                            if (data.text.Count > 1)
+                            {
+                                c = new BitmapColor(data.text[1].color.R, data.text[1].color.B, data.text[1].color.B);
+
+                                iconBuilder.DrawText(text: data.text[1].text, x: data.text[1].position.x, y: data.text[1].position.y, color: c, fontSize: data.text[1].fontsize, height: 0, width: maxx);
+                            }
                         }
                     }
+                    
                 }
                 else
                 {
