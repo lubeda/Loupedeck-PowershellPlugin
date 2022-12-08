@@ -20,7 +20,7 @@
             this.MakeProfileAction("text;Filename to ps1 file");
             this.Timer.Elapsed += this.OnTimerElapse;
             this.Timer.Enabled = true;
-            this._PowershellHelper = new Helpers.PowershellHelper();
+            this._PowershellHelper = new Helpers.PowershellHelper();ettings
         }
 
         protected override Boolean OnLoad()

@@ -9,7 +9,6 @@
     using System.Threading.Tasks;
     using System.Drawing;
 
-
 public sealed class PowershellHelper
     {
 
