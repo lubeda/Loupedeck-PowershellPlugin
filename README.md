@@ -46,4 +46,19 @@ the script should return a json-object like this:
 } 
 ```
 
-which will them be displayed on your Loupedeck
+which will them be displayed on your Loupedeck. The indicator is an optional colored triangle on the upper left side.
+The backgroundimage is a 80x80 png file from ypur computer or a simple background coplor is displayed.
+there a two optional texts tha can be displayed.
+
+an ech call of the ps1-file there is a parameter named $mode.
+
+|---|---|
+|value|action|
+|---|---|
+|trigger|The key was pressed|
+|trigger|The key was pressed|
+|trigger|The key was pressed|
+|trigger|The key was pressed|
+|---|---|
+
+
