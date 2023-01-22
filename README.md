@@ -1,6 +1,10 @@
 # Loupedeck-PowershellPlugin
-User Powershell with Loupedeck
+**Use Powershell with Loupedeck**
+
+## *!!!!This is a beta version!!!!*
+
 a Plugin that calls a ps1-script every minute or on key press or on button action.
+
 
 the script should return a json-object like this:
 
@@ -57,6 +61,7 @@ an ech call of the ps1-file there is a parameter named $mode.
 |left|the knob was turned left|
 |right|the knob was turned right|
 |click|the knob was clicked|
+|refresh|call every minute without action|
 
 
 
