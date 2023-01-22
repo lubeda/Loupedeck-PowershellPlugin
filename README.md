@@ -64,5 +64,5 @@ on each call of the ps1-file there is a parameter named $mode.
 |refresh|call every minute without action|
 
 The sample file results in toggling a light with homeassistant and displays this
-![Image](samples\test_Homeassistant.png)
+![Image](https://github.com/lubeda/Loupedeck-PowershellPlugin/blob/main/samples/test_Homeassistant.png?raw=true)
 
