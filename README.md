@@ -52,13 +52,11 @@ there a two optional texts tha can be displayed.
 
 an ech call of the ps1-file there is a parameter named $mode.
 
-|---|---|
 |value|action|
-|---|---|
 |trigger|The key was pressed|
-|trigger|The key was pressed|
-|trigger|The key was pressed|
-|trigger|The key was pressed|
-|---|---|
+|left|the knob was turned left|
+|right|the knob was turned right|
+|click|the knob was clicked|
+
 
 
