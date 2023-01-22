@@ -3,6 +3,11 @@
 
 ## *!!!!This is a beta version!!!!*
 
+---
+**To all developers:**
+I think this is the most universial plugin "ever", i can't develop it much further, because the lack of skill and time. Perhaps one can join an make this more proffesional and robust.
+---
+
 a Plugin that calls a ps1-script every minute or on key press or on button action.
 
 the script should return a json-object like this:
