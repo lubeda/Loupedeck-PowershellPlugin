@@ -5,7 +5,6 @@
 
 a Plugin that calls a ps1-script every minute or on key press or on button action.
 
-
 the script should return a json-object like this:
 
 ```
@@ -54,7 +53,7 @@ which will them be displayed on your Loupedeck. The indicator is an optional col
 The backgroundimage is a 80x80 png file from ypur computer or a simple background coplor is displayed.
 there a two optional texts tha can be displayed.
 
-an ech call of the ps1-file there is a parameter named $mode.
+on each call of the ps1-file there is a parameter named $mode.
 
 |value|action|
 |trigger|The key was pressed|
@@ -63,5 +62,6 @@ an ech call of the ps1-file there is a parameter named $mode.
 |click|the knob was clicked|
 |refresh|call every minute without action|
 
-
+The sample file results in toggling a light with homeassistant and displays this
+![.\samples\test_Homeassistant.png]
 
