@@ -58,7 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PowershellDrawingHelper.cs" />
+    <Compile Include="PowershellDrawingHelper.cs" />
+    <Compile Include="PowershellAdjustment.cs" />
     <Compile Include="PowershellCommand.cs" />
     <Compile Include="PowershellHelper.cs" />
     <Compile Include="PowershellResponse.cs" />

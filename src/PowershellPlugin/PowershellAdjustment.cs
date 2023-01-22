@@ -1,45 +1,36 @@
-﻿namespace Loupedeck.PowershellPlugin.Commands
+﻿namespace Loupedeck.PowershellPlugin
 {
     using System;
-
-    using System.IO;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
     using System.Threading.Tasks;
 
-    using System.Timers;
+    // This class implements an example adjustment that counts the rotation ticks of a dial.
 
-    using Timer = System.Timers.Timer;
-
-    public sealed class PowershellCommand : PluginDynamicCommand
+    public class PowershellAdjustment : PluginDynamicAdjustment
     {
+        // This variable holds the current value of the counter.
+        private String _result = "init";
         private readonly Helpers.PowershellHelper _PowershellHelper;
-        private readonly static PowershellPlugin Parent = PowershellPlugin.Instance;
-        private readonly Timer Timer = new Timer(60 * 1000) { Enabled = false, AutoReset = true };
 
-        public PowershellCommand() : base("Scripts", "Powershell Locations", "Powershell Locations")
+        // Initializes the adjustment class.
+        // When `hasReset` is set to true, a reset command is automatically created for this adjustment.
+        public PowershellAdjustment()
+                : base(displayName: "knobs", description: "left;right;click", groupName: "Knobs", hasReset: false)
         {
+            this._PowershellHelper = new Helpers.PowershellHelper();
             this.MakeProfileAction("text;Filename to ps1 file");
-            this.Timer.Elapsed += this.OnTimerElapse;
-            this.Timer.Enabled = true;
-            this._PowershellHelper = new Helpers.PowershellHelper();ettings
         }
 
-        protected override Boolean OnLoad()
+        // This method is called when the dial associated to the plugin is rotated.
+        protected override void ApplyAdjustment(String actionParameter, Int32 diff)
         {
-            return base.OnLoad();
+            var s = this.GetAdjustmentDisplayName(actionParameter,PluginImageSize.None);
+            RunComandAsync(actionParameter, diff < 0 ? "left" : "right");
         }
 
-        private void OnTimerElapse(Object sender, ElapsedEventArgs e)
-        {
-            foreach (var ap in this._PowershellHelper.DataKeys())
-            {
-                this.RunComandAsync(ap, "refresh");
-            }
-            this.Timer.AutoReset = true;
-            this.Timer.Enabled = true;
-        }
-
-
-        protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
+        protected override BitmapImage GetAdjustmentImage(String actionParameter, PluginImageSize imageSize)
         {
             if (String.IsNullOrEmpty(actionParameter))
             {
@@ -55,7 +46,7 @@
                 {
                     BitmapColor bgColor;
                     var maxx = PowershellDrawingHelper.GetDimension(imageSize);
-                    
+
                     if (data.bgcolor != null)
                     {
                         bgColor = new BitmapColor(data.bgcolor.R, data.bgcolor.G, data.bgcolor.B);
@@ -76,7 +67,7 @@
                     if (data.indicator != null)
                     {
                         var ci = new BitmapColor(data.indicator.R, data.indicator.G, data.indicator.B);
-                        
+
                         var max15 = maxx * (Single)0.15;
                         var max40 = (Single)maxx * 0.4;
 
@@ -99,7 +90,7 @@
                             }
                         }
                     }
-                    
+
                 }
                 else
                 {
@@ -118,16 +109,22 @@
             return null;
         }
 
-        protected override void RunCommand(String actionParameter) //  => System.Diagnostics.Process.Start($"Powershell:{actionParameter.Split(':')[0]}");
-        {
-            RunComandAsync(actionParameter, "trigger");
-        }
 
         protected async Task RunComandAsync(String actionParameter, String mode)
         {
-            var _task = this._PowershellHelper.CallPowershellAsync(mode, actionParameter);
-            _task.ContinueWith(_t => { this.ActionImageChanged(actionParameter); });
+            await this._PowershellHelper.CallPowershellAsync(mode, actionParameter);
+            this._result = mode;
+            this.AdjustmentValueChanged(); // Notify the Loupedeck service that the adjustment value has changed.
         }
+        // This method is called when the reset command related to the adjustment is executed.
+
+        protected override void RunCommand(String actionParameter)
+        {
+            RunComandAsync(actionParameter, "click");
+        }
+
+        // Returns the adjustment value that is shown next to the dial.
+        protected override String GetAdjustmentValue(String actionParameter) => this._result;
 
     }
 }
