@@ -67,7 +67,7 @@ licenseUrl: https://opensource.org/licenses/MIT
 # URL of the support page where the users can send improvement suggestions and report bugs.
 # The URL is shown in Loupedeck Marketplace. The page can be for example a GitHub issues page.
 # NOTE: This setting is recommended when publishing the plugin in Loupedeck Marketplace.
-#supportPageUrl: https://github.com/myusername/myplugin/issues
+supportPageUrl: https://github.com/lubeda/Loupedeck-PowershellPlugin
 
 # URL of the plugin homepage. The URL is shown in Loupedeck Marketplace.
-#homePageUrl: https://github.com/myusername/myplugin
+homePageUrl: https://github.com/lubeda/Loupedeck-PowershellPlugin
