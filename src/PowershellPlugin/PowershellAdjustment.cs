@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.IO;
     using System.Threading.Tasks;
 
     // This class implements an example adjustment that counts the rotation ticks of a dial.

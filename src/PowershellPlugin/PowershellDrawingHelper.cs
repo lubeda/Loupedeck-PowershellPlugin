@@ -13,9 +13,9 @@
         public static GraphicsPath RoundedRect(Rectangle bounds, Int32 radius)
         {
             var diameter = radius * 2;
-            Size size = new Size(diameter, diameter);
-            Rectangle arc = new Rectangle(bounds.Location, size);
-            GraphicsPath path = new GraphicsPath();
+            var size = new Size(diameter, diameter);
+            var arc = new Rectangle(bounds.Location, size);
+            var path = new GraphicsPath();
 
             if (radius == 0)
             {
