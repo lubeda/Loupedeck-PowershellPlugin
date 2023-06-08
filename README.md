@@ -1,16 +1,16 @@
 # Loupedeck-PowershellPlugin
-**Use Powershell with Loupedeck**
+**Use PowerShell with Loupedeck**
 
-## *!!!!This is a beta version!!!!*
+## *!!!! This is a beta version!!!!*
 
 ---
 **To all developers:**
-I think this is the most universial plugin "ever", i can't develop it much further, because the lack of skill and time. Perhaps one can join an make this more professional and robust.
+I think this is the most universal plugin “ever”, i can't develop it much further because of the lack of skill and time. Perhaps one can join and make this more professional and robust.
 ---
 
-a Plugin that calls a ps1-script every minute or on key press or on button action.
+A Plugin that calls a ps1-script every minute or on key press or on button action.
 
-the script should return a json-object like this:
+The script should return a JSON-object like this:
 
 ```
 @{ indicator = @{
@@ -54,11 +54,11 @@ the script should return a json-object like this:
 } 
 ```
 
-which will them be displayed on your Loupedeck. The indicator is an optional colored triangle on the upper left side.
-The backgroundimage is a 80x80 png file from ypur computer or a simple background coplor is displayed.
-there a two optional texts tha can be displayed.
+Which will then be displayed on your Loupedeck. The indicator is an optional colored triangle on the upper-left side.
+The background image is an 80x80 PNG file from your computer, or a simple background color is displayed.
+There are two optional texts that can be displayed.
 
-on each call of the ps1-file there is a parameter named $mode.
+On each call of the ps1-file, there is a parameter named $mode.
 
 |value|action|
 |---|---|
@@ -68,6 +68,6 @@ on each call of the ps1-file there is a parameter named $mode.
 |click|the knob was clicked|
 |refresh|call every minute without action|
 
-The sample file results in toggling a light with homeassistant and displays this
+The sample file results in toggling a light with home assistant and displays this
 ![Image](https://github.com/lubeda/Loupedeck-PowershellPlugin/blob/main/samples/test_Homeassistant.png?raw=true)
 
